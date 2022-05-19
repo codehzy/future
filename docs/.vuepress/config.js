@@ -13,6 +13,21 @@ module.exports = {
           content: "width=device-width,initial-scale=1,user-scalable=no",
         },
       ],
+      [
+        "script",
+        {},
+        `
+        <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?991a597329ae99cf083806dc8e306896";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>              
+        `,
+      ],
     ],
     nav: [
       { text: "首页", link: "/" },
