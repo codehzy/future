@@ -4,7 +4,7 @@ module.exports = {
   theme: "reco",
   themeConfig: {
     // 作者
-    author: "reco_luan",
+    author: "future",
     head: [
       [
         "meta",
@@ -80,8 +80,11 @@ module.exports = {
       },
       socialLinks: [
         // 信息栏展示社交信息
-        { icon: "reco-github", link: "https://github.com/recoluan" },
-        { icon: "reco-npm", link: "https://www.npmjs.com/~reco_luan" },
+        { icon: "reco-github", link: "https://github.com/codehzy" },
+        {
+          icon: "reco-wechat",
+          link: "http://imgsbed-1301560453.cossh.myqcloud.com/blog/202205191834047.JPG",
+        },
       ],
     },
   },
