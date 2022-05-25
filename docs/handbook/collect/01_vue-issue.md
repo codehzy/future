@@ -42,3 +42,17 @@ export default {
   }
 </style>
 ```
+
+## 问题二：vue使用element-ui的modal接入微前端出现蒙层
+
+解决： 查看element-ui的modal,添加属性modal的布尔值
+
+```js
+<el-dialog
+      title="监控条件选择"
+      :visible.sync="dialogVisible"
+      :modal="false"
+      destroy-on-close
+    >
+</el-dialog>
+```
