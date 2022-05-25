@@ -56,3 +56,11 @@ export default {
     >
 </el-dialog>
 ```
+
+## 问题三：vue单页应用h5禁止用户缩放
+
+解决：在index.html的mate加入以下属性
+
+```js
+width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0
+```
