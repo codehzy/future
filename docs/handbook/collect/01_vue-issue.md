@@ -45,7 +45,7 @@ export default {
 
 ## 问题二：vue使用element-ui的modal接入微前端出现蒙层
 
-解决： 查看element-ui的modal,添加属性modal的布尔值
+解决： 查看element-ui的文档，modal-append-to-body设置为false
 
 ```js
 <el-dialog
