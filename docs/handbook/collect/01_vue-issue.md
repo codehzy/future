@@ -51,7 +51,7 @@ export default {
 <el-dialog
       title="监控条件选择"
       :visible.sync="dialogVisible"
-      :modal="false"
+      :modal-append-to-body="false"
       destroy-on-close
     >
 </el-dialog>
