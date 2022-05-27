@@ -64,3 +64,28 @@ export default {
 ```js
 width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0
 ```
+
+## 问题四：vue3的reactive对象初始化
+
+解决：
+1. 在reactive中如果直接赋值给一个空对象的话，会丢掉响应式
+2. 在ts检测时候，Object.key遍历的值会访问显示string类型索引错误。
+
+```typescript
+const registerInfo = reactive<RegisterInfoType>({
+  name: '',
+  age: '',
+  password: '',
+});
+
+type registerInfoItem = keyof typeof registerInfo;
+
+/**
+ * 重置注册表单
+ */
+const onReset = () => {
+  Object.keys(registerInfo).forEach((key) => {
+    registerInfo[key as registerInfoItem] = '';
+  });
+};
+```
