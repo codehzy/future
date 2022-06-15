@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>nestjs使用jwt完成CRUD | Future一点一滴</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Future一点一滴">
+    
+    <link rel="preload" href="/assets/css/0.styles.ff87e5d5.css" as="style"><link rel="preload" href="/assets/js/app.cd554512.js" as="script"><link rel="preload" href="/assets/js/3.6b949e12.js" as="script"><link rel="preload" href="/assets/js/1.7c22585b.js" as="script"><link rel="preload" href="/assets/js/18.dd551d83.js" as="script"><link rel="prefetch" href="/assets/js/10.73bdd98a.js"><link rel="prefetch" href="/assets/js/11.810d4647.js"><link rel="prefetch" href="/assets/js/12.6ee1bf90.js"><link rel="prefetch" href="/assets/js/13.8aaf6278.js"><link rel="prefetch" href="/assets/js/14.4ebf5bac.js"><link rel="prefetch" href="/assets/js/15.e32175bb.js"><link rel="prefetch" href="/assets/js/16.9a05aa94.js"><link rel="prefetch" href="/assets/js/17.715de3c3.js"><link rel="prefetch" href="/assets/js/19.dd2ac796.js"><link rel="prefetch" href="/assets/js/20.e757b173.js"><link rel="prefetch" href="/assets/js/21.aba35fe8.js"><link rel="prefetch" href="/assets/js/4.cf4ee95d.js"><link rel="prefetch" href="/assets/js/5.89cc78b8.js"><link rel="prefetch" href="/assets/js/6.29bd8d23.js"><link rel="prefetch" href="/assets/js/7.9248ebd1.js"><link rel="prefetch" href="/assets/js/8.6cc81228.js"><link rel="prefetch" href="/assets/js/9.9a7ba9f0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ff87e5d5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-130b300a><div data-v-130b300a><div class="password-shadow password-wrapper-out" style="display:none;" data-v-25ba6db2 data-v-130b300a data-v-130b300a><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>Future一点一滴</h3> <p class="description" data-v-25ba6db2 data-v-25ba6db2>Future一点一滴</p> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><span data-v-25ba6db2>future</span>
+            
+          <!---->
+          2022
+        </a></span></div></div> <div class="hide" data-v-130b300a><header class="navbar" data-v-130b300a><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Future一点一滴</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/issue/" class="nav-link"><i class="undefined"></i>
+  issue
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Design/" class="nav-link"><i class="undefined"></i>
+  Design
+</a></li><li class="dropdown-item"><!----> <a href="/categories/FE/" class="nav-link"><i class="undefined"></i>
+  FE
+</a></li><li class="dropdown-item"><!----> <a href="/categories/back/" class="nav-link"><i class="undefined"></i>
+  back
+</a></li><li class="dropdown-item"><!----> <a href="/categories/js-api/" class="nav-link"><i class="undefined"></i>
+  js-api
+</a></li><li class="dropdown-item"><!----> <a href="/categories/End/" class="nav-link"><i class="undefined"></i>
+  End
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      Future的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/codehzy" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://juejin.cn/user/1714893872178823" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-blog"></i>
+  TimeLine
+</a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-130b300a></div> <aside class="sidebar" data-v-130b300a><div class="personal-info-wrapper" data-v-39576ba9 data-v-130b300a><!----> <h3 class="name" data-v-39576ba9>
+    future
+  </h3> <div class="num" data-v-39576ba9><div data-v-39576ba9><h3 data-v-39576ba9>12</h3> <h6 data-v-39576ba9>文章</h6></div> <div data-v-39576ba9><h3 data-v-39576ba9>9</h3> <h6 data-v-39576ba9>标签</h6></div></div> <ul class="social-links" data-v-39576ba9><li class="social-item" data-v-39576ba9><i class="iconfont reco-github" style="color:#e15b64;" data-v-39576ba9></i></li><li class="social-item" data-v-39576ba9><i class="iconfont reco-wechat" style="color:#3498db;" data-v-39576ba9></i></li></ul> <hr data-v-39576ba9></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/issue/" class="nav-link"><i class="undefined"></i>
+  issue
+</a></li><li class="dropdown-item"><!----> <a href="/categories/Design/" class="nav-link"><i class="undefined"></i>
+  Design
+</a></li><li class="dropdown-item"><!----> <a href="/categories/FE/" class="nav-link"><i class="undefined"></i>
+  FE
+</a></li><li class="dropdown-item"><!----> <a href="/categories/back/" class="nav-link"><i class="undefined"></i>
+  back
+</a></li><li class="dropdown-item"><!----> <a href="/categories/js-api/" class="nav-link"><i class="undefined"></i>
+  js-api
+</a></li><li class="dropdown-item"><!----> <a href="/categories/End/" class="nav-link"><i class="undefined"></i>
+  End
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      Future的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/codehzy" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://juejin.cn/user/1714893872178823" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-blog"></i>
+  TimeLine
+</a></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-25ba6db2 data-v-130b300a><h3 class="title" data-v-25ba6db2 data-v-25ba6db2>nestjs使用jwt完成CRUD</h3> <!----> <label id="box" class="inputBox" data-v-25ba6db2 data-v-25ba6db2><input type="password" value="" data-v-25ba6db2> <span data-v-25ba6db2>Konck! Knock!</span> <button data-v-25ba6db2>OK</button></label> <div class="footer" data-v-25ba6db2 data-v-25ba6db2><span data-v-25ba6db2><i class="iconfont reco-theme" data-v-25ba6db2></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-25ba6db2>vuePress-theme-reco</a></span> <span data-v-25ba6db2><i class="iconfont reco-copyright" data-v-25ba6db2></i> <a data-v-25ba6db2><span data-v-25ba6db2>future</span>
+            
+          <!---->
+          2022
+        </a></span></div></div> <div data-v-130b300a><main class="page"><section><div class="page-title"><h1 class="title">nestjs使用jwt完成CRUD</h1> <div data-v-f875f3fc><i class="iconfont reco-account" data-v-f875f3fc><span data-v-f875f3fc>future</span></i> <i class="iconfont reco-date" data-v-f875f3fc><span data-v-f875f3fc>2022/6/15</span></i> <!----> <i class="tags iconfont reco-tag" data-v-f875f3fc><span class="tag-item" data-v-f875f3fc>nestjs</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="_1-安装jwt依赖"><a href="#_1-安装jwt依赖" class="header-anchor">#</a> 1. 安装jwt依赖</h2> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">pnpm</span> <span class="token function">add</span> @nestjs/jwt @nestjs/passport @nestjs/swagger @types/passport-jwt crypto express passport passport-jwt swagger-ui-express uuid
+</code></pre></div><h2 id="_2-创建认证文件"><a href="#_2-创建认证文件" class="header-anchor">#</a> 2. 创建认证文件</h2> <div class="language-shell extra-class"><pre class="language-shell"><code>nest g mo auth --no-spec
+nest g s auth --no-spec
+nest g co auth --no-spec
+
+nest g mo user --no-spec
+nset g s user --no-spec
+nest g co user --no-spec
+</code></pre></div><h2 id="_3-创建jwt文件"><a href="#_3-创建jwt文件" class="header-anchor">#</a> 3. 创建jwt文件</h2> <img src="http://imgsbed-1301560453.cossh.myqcloud.com/blog/202206151614089.png" alt="image-20220615161417967" style="zoom:50%;"> <h2 id="_4-编写文件"><a href="#_4-编写文件" class="header-anchor">#</a> 4. 编写文件</h2> <h3 id="_4-1-编写jwt-strategy-ts"><a href="#_4-1-编写jwt-strategy-ts" class="header-anchor">#</a> 4.1 编写jwt.strategy.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> ExtractJwt<span class="token punctuation">,</span> Strategy <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'passport-jwt'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PassportStrategy <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/passport'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> jwtConstants <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../../config'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">JwtStrategy</span> <span class="token keyword">extends</span> <span class="token class-name">PassportStrategy</span><span class="token punctuation">(</span>Strategy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      jwtFromRequest<span class="token operator">:</span> ExtractJwt<span class="token punctuation">.</span><span class="token function">fromAuthHeaderAsBearerToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      ignoreExpiration<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      secretOrKey<span class="token operator">:</span> jwtConstants<span class="token punctuation">.</span>secret<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">async</span> <span class="token function">validate</span><span class="token punctuation">(</span>payload<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> message<span class="token operator">:</span> <span class="token string">'123'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-2-编写index-ts"><a href="#_4-2-编写index-ts" class="header-anchor">#</a> 4.2 编写index.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token string">'./jwt.strategy'</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_4-3-编写main-ts"><a href="#_4-3-编写main-ts" class="header-anchor">#</a> 4.3 编写main.ts</h3> <div class="language-type extra-class"><pre class="language-text"><code>import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  const config = new DocumentBuilder()
+    .setTitle('CRUD')
+    .setDescription('一个练手标准项目')
+    .setVersion('1.0')
+    .addTag('future')
+    .addBasicAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'jwt',
+    )
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
+  await app.listen(6666);
+}
+bootstrap();
+</code></pre></div><h3 id="_4-4-编写utils-cryptogram-ts"><a href="#_4-4-编写utils-cryptogram-ts" class="header-anchor">#</a> 4.4 编写utils/cryptogram.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> crypto <span class="token keyword">from</span> <span class="token string">'crypto'</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Make salt
+ */</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">makeSalt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> crypto<span class="token punctuation">.</span><span class="token function">randomBytes</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">'base64'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * 将密码hash
+ * @param password 用户输入的密码
+ * @param salt 盐
+ * @returns
+ */</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">encryptPassword</span><span class="token punctuation">(</span>password<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> salt<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>password <span class="token operator">||</span> <span class="token operator">!</span>salt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> tempSalt <span class="token operator">=</span> Buffer<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>salt<span class="token punctuation">,</span> <span class="token string">'base64'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token comment">// 10000 代表迭代次数 16代表长度</span>
+    crypto<span class="token punctuation">.</span><span class="token function">pbkdf2Sync</span><span class="token punctuation">(</span>password<span class="token punctuation">,</span> tempSalt<span class="token punctuation">,</span> <span class="token number">10000</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token string">'sha1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">'base64'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-5-编写app-module-ts"><a href="#_4-5-编写app-module-ts" class="header-anchor">#</a> 4.5 编写app.module.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Module <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> DatabaseModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./db/database.module'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PhotoModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./photo/photo.module'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./auth/auth.module'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./user/user.module'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Module</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>DatabaseModule<span class="token punctuation">,</span> PhotoModule<span class="token punctuation">,</span> AuthModule<span class="token punctuation">,</span> UserModule<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  controllers<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppModule</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-6-编写user-service-ts"><a href="#_4-6-编写user-service-ts" class="header-anchor">#</a> 4.6 编写user.service.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Repository <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'typeorm'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Inject<span class="token punctuation">,</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> User <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/entity/user/user.entity'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UsersDTO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/dto/userdto'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> v4 <span class="token keyword">as</span> uuidv4 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'uuid'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">CODE</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/code/code'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> encryptPassword<span class="token punctuation">,</span> makeSalt <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/utils/cryptogram'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> registerDTO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/dto/authdto'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>
+    <span class="token decorator"><span class="token at operator">@</span><span class="token function">Inject</span></span><span class="token punctuation">(</span><span class="token string">'USER_REPOSITORY'</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> userRepository<span class="token operator">:</span> Repository<span class="token operator">&lt;</span>User<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 通过邮箱：查找用户
+   * @param email 用户邮箱
+   * @returns
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">findByEmail</span><span class="token punctuation">(</span>email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>UsersDTO<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userRepository<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      where<span class="token operator">:</span> <span class="token punctuation">{</span>
+        email<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 通过用户唯一id查找用户
+   * @param uuid 用户唯一id
+   * @returns
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">findOne</span><span class="token punctuation">(</span>uuid<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>UsersDTO<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userRepository<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      where<span class="token operator">:</span> <span class="token punctuation">{</span>
+        uuid<span class="token operator">:</span> uuid<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 根据用户email 和 data来更新
+   * @param email 用户email地址
+   * @param data  要变更的信息
+   * @returns
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">updateUser</span><span class="token punctuation">(</span>email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> data<span class="token operator">:</span> Partial<span class="token operator">&lt;</span>UsersDTO<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userRepository<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span> email <span class="token punctuation">}</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userRepository<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      where<span class="token operator">:</span> <span class="token punctuation">{</span>
+        email<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 根据用户邮箱删除用户
+   * @param email 用户邮箱
+   * @returns
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">deleteUser</span><span class="token punctuation">(</span>email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userRepository<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">{</span> email <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      code<span class="token operator">:</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">HTTP_OK</span><span class="token punctuation">,</span>
+      message<span class="token operator">:</span> <span class="token string">'删除成功'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 清空数据库中user表中所有数据
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">clearUser</span><span class="token punctuation">(</span>isClearAll<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isClearAll<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userRepository<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        code<span class="token operator">:</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">HTTP_OK</span><span class="token punctuation">,</span>
+        message<span class="token operator">:</span> <span class="token string">'清空user表成功'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 注册用户
+   * @param body 注册用户体
+   * @returns
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">authRegister</span><span class="token punctuation">(</span>body<span class="token operator">:</span> registerDTO<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> email<span class="token punctuation">,</span> password <span class="token punctuation">}</span> <span class="token operator">=</span> body<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> userExist <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">findByEmail</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>userExist<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>userExist<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        HttpStatus<span class="token operator">:</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">HTTP_CREATED</span><span class="token punctuation">,</span>
+        message<span class="token operator">:</span> <span class="token string">'用户已经存在'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">const</span> uuid <span class="token operator">=</span> <span class="token function">uuidv4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 加盐加密</span>
+    <span class="token keyword">const</span> salt <span class="token operator">=</span> <span class="token function">makeSalt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> hashPwd <span class="token operator">=</span> <span class="token function">encryptPassword</span><span class="token punctuation">(</span>password<span class="token punctuation">,</span> salt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>item <span class="token operator">===</span> <span class="token string">'password'</span><span class="token punctuation">)</span> body<span class="token punctuation">[</span>item<span class="token punctuation">]</span> <span class="token operator">=</span> hashPwd<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> reqBody <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span> uuid<span class="token punctuation">,</span> salt <span class="token punctuation">}</span><span class="token punctuation">,</span> body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userRepository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>reqBody<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-7-编写user-module-ts"><a href="#_4-7-编写user-module-ts" class="header-anchor">#</a> 4.7 编写user.module.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Module <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./user.service'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserController <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./user.controller'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> DatabaseModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../db/database.module'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> userProviders <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../entity/user/user.providers'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Module</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>DatabaseModule<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span>UserService<span class="token punctuation">,</span> <span class="token operator">...</span>userProviders<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  controllers<span class="token operator">:</span> <span class="token punctuation">[</span>UserController<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserModule</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-8-编写user-controller-ts"><a href="#_4-8-编写user-controller-ts" class="header-anchor">#</a> 4.8 编写user.controller.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  Body<span class="token punctuation">,</span>
+  Controller<span class="token punctuation">,</span>
+  Delete<span class="token punctuation">,</span>
+  Get<span class="token punctuation">,</span>
+  HttpStatus<span class="token punctuation">,</span>
+  Param<span class="token punctuation">,</span>
+  Patch<span class="token punctuation">,</span>
+  Post<span class="token punctuation">,</span>
+  Put<span class="token punctuation">,</span>
+  Query<span class="token punctuation">,</span>
+  UseGuards<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ApiOperation<span class="token punctuation">,</span> ApiQuery<span class="token punctuation">,</span> ApiTags <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/swagger'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> registerDTO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/dto/authdto'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserFindByEmail<span class="token punctuation">,</span> UserFindOne<span class="token punctuation">,</span> UsersDTO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/dto/userdto'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./user.service'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Controller</span></span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span>
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiTags</span></span><span class="token punctuation">(</span><span class="token string">'用户模块'</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserController</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">readonly</span> userService<span class="token operator">:</span> UserService<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 查找用户
+   * @param email 用户邮箱
+   * @returns
+   */</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Get</span></span><span class="token punctuation">(</span><span class="token string">'findByEmail'</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOperation</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    summary<span class="token operator">:</span> <span class="token string">'根据邮箱查询某个用户'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiQuery</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'email'</span><span class="token punctuation">,</span> description<span class="token operator">:</span> <span class="token string">'用户email'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> UserFindByEmail <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">findByEmail</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Query</span></span><span class="token punctuation">(</span><span class="token string">'email'</span><span class="token punctuation">)</span> email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userService<span class="token punctuation">.</span><span class="token function">findByEmail</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 通过用户唯一id查找用户
+   * @param uuid 用户唯一id
+   * @returns
+   */</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Get</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOperation</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    summary<span class="token operator">:</span> <span class="token string">'根据用户uuid查找用户'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiQuery</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'uuid'</span><span class="token punctuation">,</span> description<span class="token operator">:</span> <span class="token string">'用户uuid'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> UserFindOne <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">findOne</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Query</span></span><span class="token punctuation">(</span><span class="token string">'uuid'</span><span class="token punctuation">)</span> uuid<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userService<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>uuid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Put</span></span><span class="token punctuation">(</span><span class="token string">'/update/:email'</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOperation</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    summary<span class="token operator">:</span> <span class="token string">'根据用户email更新用户信息'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">updateUser</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Param</span></span><span class="token punctuation">(</span><span class="token string">'email'</span><span class="token punctuation">)</span> email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token decorator"><span class="token at operator">@</span><span class="token function">Body</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> data<span class="token operator">:</span> UsersDTO<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> checkUser <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">findByEmail</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>checkUser<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        HttpStatus<span class="token operator">:</span> <span class="token number">201</span><span class="token punctuation">,</span>
+        message<span class="token operator">:</span> <span class="token string">'用户不存在'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userService<span class="token punctuation">.</span><span class="token function">updateUser</span><span class="token punctuation">(</span>email<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      status<span class="token operator">:</span> HttpStatus<span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">,</span>
+      message<span class="token operator">:</span> <span class="token string">'用户信息更新成功'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 根据用户邮箱删除用户
+   * @param email 用户邮箱
+   * @returns
+   */</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Delete</span></span><span class="token punctuation">(</span><span class="token string">'/delete/:email'</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOperation</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    summary<span class="token operator">:</span> <span class="token string">'根据用户email删除用户'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">deleteOne</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Param</span></span><span class="token punctuation">(</span><span class="token string">'email'</span><span class="token punctuation">)</span> email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> checkUser <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">findByEmail</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>checkUser<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        HttpStatus<span class="token operator">:</span> <span class="token number">201</span><span class="token punctuation">,</span>
+        message<span class="token operator">:</span> <span class="token string">'用户不存在'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userService<span class="token punctuation">.</span><span class="token function">deleteUser</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      status<span class="token operator">:</span> HttpStatus<span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">,</span>
+      message<span class="token operator">:</span> <span class="token string">'用户删除成功'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 清空数据库中user表中所有数据
+   */</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Get</span></span><span class="token punctuation">(</span><span class="token string">'clearUser'</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOperation</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    summary<span class="token operator">:</span> <span class="token string">'清空用户表中所有用户'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">clearUser</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Query</span></span><span class="token punctuation">(</span><span class="token string">'isClear'</span><span class="token punctuation">)</span> isClear<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userService<span class="token punctuation">.</span><span class="token function">clearUser</span><span class="token punctuation">(</span>isClear<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 注册用户
+   * @param body 注册用户体
+   * @returns
+   */</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Post</span></span><span class="token punctuation">(</span><span class="token string">'register'</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOperation</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    summary<span class="token operator">:</span> <span class="token string">'注册用户'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">authRegister</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Body</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> body<span class="token operator">:</span> registerDTO<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>userService<span class="token punctuation">.</span><span class="token function">authRegister</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-9-编写user-entity-ts"><a href="#_4-9-编写user-entity-ts" class="header-anchor">#</a> 4.9 编写user.entity.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  Column<span class="token punctuation">,</span>
+  CreateDateColumn<span class="token punctuation">,</span>
+  Entity<span class="token punctuation">,</span>
+  PrimaryGeneratedColumn<span class="token punctuation">,</span>
+  UpdateDateColumn<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'typeorm'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Entity</span></span><span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">PrimaryGeneratedColumn</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'int'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'id'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'主键id'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token string">'varchar'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    nullable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    length<span class="token operator">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'uuid'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'uuid'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  uuid<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token string">'varchar'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    nullable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'salt'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'密码盐'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  salt<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token string">'varchar'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    nullable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'username'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'用户名'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  username<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token string">'varchar'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    nullable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'password'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'密码'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  password<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token string">'varchar'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'email'</span><span class="token punctuation">,</span>
+    length<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'邮箱'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token string">'varchar'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    nullable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'avatar'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'头像'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  avatar<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Column</span></span><span class="token punctuation">(</span><span class="token string">'int'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    nullable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'active'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'是否激活状态'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  active<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 0 未激活 1 激活</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">CreateDateColumn</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'datetime'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'创建时间'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'create_at'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  createAt<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">UpdateDateColumn</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">'datetime'</span><span class="token punctuation">,</span>
+    comment<span class="token operator">:</span> <span class="token string">'更新时间'</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'update_at'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  updateAt<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-10-编写user-providers-ts"><a href="#_4-10-编写user-providers-ts" class="header-anchor">#</a> 4.10 编写user.providers.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> DataSource <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'typeorm'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> User <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./user.entity'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> userProviders <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    provide<span class="token operator">:</span> <span class="token string">'USER_REPOSITORY'</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">useFactory</span><span class="token operator">:</span> <span class="token punctuation">(</span>dataSource<span class="token operator">:</span> DataSource<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> dataSource<span class="token punctuation">.</span><span class="token function">getRepository</span><span class="token punctuation">(</span>User<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    inject<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'DATA_SOURCE'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_4-11-编写userdto-ts"><a href="#_4-11-编写userdto-ts" class="header-anchor">#</a> 4.11 编写userDto.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> ApiPropertyOptional <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/swagger'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UsersDTO</span> <span class="token punctuation">{</span>
+  uuid<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiPropertyOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    description<span class="token operator">:</span> <span class="token string">'用户名'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  username<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  salt<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiPropertyOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    description<span class="token operator">:</span> <span class="token string">'密码'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  password<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiPropertyOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    description<span class="token operator">:</span> <span class="token string">'邮箱'</span><span class="token punctuation">,</span>
+    maxLength<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiPropertyOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    description<span class="token operator">:</span> <span class="token string">'头像'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  avatar<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiPropertyOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    description<span class="token operator">:</span> <span class="token string">'0 未激活 1 激活'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  active<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 0 未激活 1 激活</span>
+
+  createAt<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+  updateAt<span class="token operator">:</span> Date<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserFindByEmail</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiPropertyOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    description<span class="token operator">:</span> <span class="token string">'邮箱'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  email<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserFindOne</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiPropertyOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    description<span class="token operator">:</span> <span class="token string">'uuid'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  uuid<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-12-编写config-constants"><a href="#_4-12-编写config-constants" class="header-anchor">#</a> 4.12 编写config/constants</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">const</span> jwtConstants <span class="token operator">=</span> <span class="token punctuation">{</span>
+  secret<span class="token operator">:</span> <span class="token string">'super_hero'</span><span class="token punctuation">,</span> <span class="token comment">// 秘钥</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_4-13-编写config-index-ts"><a href="#_4-13-编写config-index-ts" class="header-anchor">#</a> 4.13 编写config/index.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token string">'./constants'</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_4-14-编写code-code-ts"><a href="#_4-14-编写code-code-ts" class="header-anchor">#</a> 4.14 编写code/code.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">enum</span> <span class="token constant">CODE</span> <span class="token punctuation">{</span>
+  <span class="token constant">HTTP_OK</span> <span class="token operator">=</span> <span class="token string">'200'</span><span class="token punctuation">,</span>
+  <span class="token constant">HTTP_CREATED</span> <span class="token operator">=</span> <span class="token string">'201'</span><span class="token punctuation">,</span>
+  <span class="token constant">REP_WARNING</span> <span class="token operator">=</span> <span class="token string">'1001'</span><span class="token punctuation">,</span>
+  <span class="token constant">REP_ERROR</span> <span class="token operator">=</span> <span class="token string">'1002'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-15-编写auth-service-ts"><a href="#_4-15-编写auth-service-ts" class="header-anchor">#</a> 4.15 编写auth.service.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> encryptPassword <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/utils/cryptogram'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> authDto<span class="token punctuation">,</span> loginData<span class="token punctuation">,</span> registerDTO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/dto/authdto'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./../user/user.service'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> JwtService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/jwt'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">CODE</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/code/code'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthService</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> usersService<span class="token operator">:</span> UserService<span class="token punctuation">,</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> jwtService<span class="token operator">:</span> JwtService<span class="token punctuation">,</span>
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token comment">// 校验用户信息</span>
+  <span class="token keyword">async</span> <span class="token function">validateUser</span><span class="token punctuation">(</span><span class="token punctuation">{</span> email<span class="token punctuation">,</span> password <span class="token punctuation">}</span><span class="token operator">:</span> loginData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>usersService<span class="token punctuation">.</span><span class="token function">findByEmail</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>user<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> password<span class="token operator">:</span> <span class="token constant">PWD</span><span class="token punctuation">,</span> salt <span class="token punctuation">}</span> <span class="token operator">=</span> user<span class="token punctuation">;</span>
+      <span class="token keyword">const</span> hashPassword <span class="token operator">=</span> <span class="token function">encryptPassword</span><span class="token punctuation">(</span>password<span class="token punctuation">,</span> salt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>hashPassword <span class="token operator">===</span> <span class="token constant">PWD</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          code<span class="token operator">:</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">HTTP_OK</span><span class="token punctuation">,</span>
+          user<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          code<span class="token operator">:</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">HTTP_OK</span><span class="token punctuation">,</span>
+          message<span class="token operator">:</span> <span class="token string">'用户名或者密码错误'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        code<span class="token operator">:</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">REP_WARNING</span><span class="token punctuation">,</span>
+        message<span class="token operator">:</span> <span class="token string">'用户不存在'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">async</span> <span class="token function">certificate</span><span class="token punctuation">(</span>user<span class="token operator">:</span> authDto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> email<span class="token punctuation">,</span> password <span class="token punctuation">}</span> <span class="token operator">=</span> user<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> payload <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span> email<span class="token punctuation">,</span> password <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> token <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>jwtService<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        code<span class="token operator">:</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">HTTP_OK</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span> <span class="token punctuation">{</span>
+          token<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        code<span class="token operator">:</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">REP_WARNING</span><span class="token punctuation">,</span>
+        msg<span class="token operator">:</span> <span class="token string">'账号或密码错误'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">async</span> <span class="token function">register</span><span class="token punctuation">(</span>body<span class="token operator">:</span> registerDTO<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>usersService<span class="token punctuation">.</span><span class="token function">authRegister</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-16-编写auth-module-ts"><a href="#_4-16-编写auth-module-ts" class="header-anchor">#</a> 4.16 编写auth.module.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Module <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./auth.service'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthController <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./auth.controller'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../user/user.service'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> userProviders <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/entity/user/user.providers'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PassportModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/passport'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> JwtModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/jwt'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> jwtConstants <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/config'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> JwtStrategy <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./strategy'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> DatabaseModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/db/database.module'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Module</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>
+    DatabaseModule<span class="token punctuation">,</span>
+    PassportModule<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">{</span> defaultStrategy<span class="token operator">:</span> <span class="token string">'jwt'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    JwtModule<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      secret<span class="token operator">:</span> jwtConstants<span class="token punctuation">.</span>secret<span class="token punctuation">,</span>
+      signOptions<span class="token operator">:</span> <span class="token punctuation">{</span> expiresIn<span class="token operator">:</span> <span class="token string">'5min'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  controllers<span class="token operator">:</span> <span class="token punctuation">[</span>AuthController<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span>AuthService<span class="token punctuation">,</span> UserService<span class="token punctuation">,</span> <span class="token operator">...</span>userProviders<span class="token punctuation">,</span> JwtStrategy<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthModule</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="_4-17-编写auth-controller-ts"><a href="#_4-17-编写auth-controller-ts" class="header-anchor">#</a> 4.17 编写auth.controller.ts</h3> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Body<span class="token punctuation">,</span> Controller<span class="token punctuation">,</span> Post<span class="token punctuation">,</span> UseGuards <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/common'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ApiBearerAuth<span class="token punctuation">,</span> ApiOperation<span class="token punctuation">,</span> ApiTags <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/swagger'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./auth.service'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">CODE</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/code/code'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> AuthGuard <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@nestjs/passport'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> authDto<span class="token punctuation">,</span> loginData <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'src/dto/authdto'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Controller</span></span><span class="token punctuation">(</span><span class="token string">'auth'</span><span class="token punctuation">)</span>
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiTags</span></span><span class="token punctuation">(</span><span class="token string">'用户认证模块'</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AuthController</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">readonly</span> authService<span class="token operator">:</span> AuthService<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 用户登录
+   * @param body 登录信息
+   */</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Post</span></span><span class="token punctuation">(</span><span class="token string">'login'</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOperation</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    summary<span class="token operator">:</span> <span class="token string">'用户登录'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">login</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Body</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> body<span class="token operator">:</span> loginData<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> email<span class="token punctuation">,</span> password <span class="token punctuation">}</span> <span class="token operator">=</span> body<span class="token punctuation">;</span>
+
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'JWT验证 - Step 1: 用户请求登录'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> authResult <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>authService<span class="token punctuation">.</span><span class="token function">validateUser</span><span class="token punctuation">(</span><span class="token punctuation">{</span> email<span class="token punctuation">,</span> password <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>authResult<span class="token punctuation">.</span>code<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">HTTP_OK</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>authService<span class="token punctuation">.</span><span class="token function">certificate</span><span class="token punctuation">(</span>authResult<span class="token punctuation">.</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token constant">CODE</span><span class="token punctuation">.</span><span class="token constant">REP_WARNING</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          code<span class="token operator">:</span> <span class="token number">600</span><span class="token punctuation">,</span>
+          msg<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">账号或密码不正确</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          code<span class="token operator">:</span> <span class="token number">600</span><span class="token punctuation">,</span>
+          msg<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">查无此人</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Post</span></span><span class="token punctuation">(</span><span class="token string">'register'</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOperation</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    summary<span class="token operator">:</span> <span class="token string">'注册'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiBearerAuth</span></span><span class="token punctuation">(</span><span class="token string">'jwt'</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">UseGuards</span></span><span class="token punctuation">(</span><span class="token function">AuthGuard</span><span class="token punctuation">(</span><span class="token string">'jwt'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 使用 'JWT' 进行验证</span>
+  <span class="token keyword">async</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Body</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> body<span class="token operator">:</span> authDto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>authService<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_5-测试"><a href="#_5-测试" class="header-anchor">#</a> 5. 测试</h2> <h3 id="_5-1-测试注册用户"><a href="#_5-1-测试注册用户" class="header-anchor">#</a> 5.1 测试注册用户</h3> <img src="http://imgsbed-1301560453.cossh.myqcloud.com/blog/202206151630568.png" alt="image-20220615163048059" style="zoom:50%;"> <p>此时由于加了auth.controller.ts中加了jwt守卫</p> <div class="language-shell extra-class"><pre class="language-shell"><code>@UseGuards<span class="token punctuation">(</span>AuthGuard<span class="token punctuation">(</span><span class="token string">'jwt'</span><span class="token punctuation">))</span> // 使用 <span class="token string">'JWT'</span> 进行验证
+</code></pre></div><p>此时我们需要先登录才可以注册，将登录的token放到postman的中</p> <h3 id="_5-2-测试登录用户"><a href="#_5-2-测试登录用户" class="header-anchor">#</a> 5.2 测试登录用户</h3> <img src="http://imgsbed-1301560453.cossh.myqcloud.com/blog/202206151633468.png" alt="image-20220615163325963" style="zoom:50%;"> <p>将token放入认证，此时可以注册</p> <img src="http://imgsbed-1301560453.cossh.myqcloud.com/blog/202206151634634.png" alt="image-20220615163407180" style="zoom:50%;"> <h3 id="_5-3-注册swagger"><a href="#_5-3-注册swagger" class="header-anchor">#</a> 5.3 注册swagger</h3> <p>访问http://localhost:6666/api/#/</p></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新: </span> <span class="time">2022/6/15 下午5:57:01</span></div></footer> <!----> <div class="comments-wrapper"><!----></div> <ul class="side-bar sub-sidebar-wrapper" style="width:12rem;" data-v-cb1513f6><li class="level-2" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_1-安装jwt依赖" class="sidebar-link reco-side-_1-安装jwt依赖" data-v-cb1513f6>1. 安装jwt依赖</a></li><li class="level-2" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_2-创建认证文件" class="sidebar-link reco-side-_2-创建认证文件" data-v-cb1513f6>2. 创建认证文件</a></li><li class="level-2" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_3-创建jwt文件" class="sidebar-link reco-side-_3-创建jwt文件" data-v-cb1513f6>3. 创建jwt文件</a></li><li class="level-2" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-编写文件" class="sidebar-link reco-side-_4-编写文件" data-v-cb1513f6>4. 编写文件</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-1-编写jwt-strategy-ts" class="sidebar-link reco-side-_4-1-编写jwt-strategy-ts" data-v-cb1513f6>4.1 编写jwt.strategy.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-2-编写index-ts" class="sidebar-link reco-side-_4-2-编写index-ts" data-v-cb1513f6>4.2 编写index.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-3-编写main-ts" class="sidebar-link reco-side-_4-3-编写main-ts" data-v-cb1513f6>4.3 编写main.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-4-编写utils-cryptogram-ts" class="sidebar-link reco-side-_4-4-编写utils-cryptogram-ts" data-v-cb1513f6>4.4 编写utils/cryptogram.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-5-编写app-module-ts" class="sidebar-link reco-side-_4-5-编写app-module-ts" data-v-cb1513f6>4.5 编写app.module.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-6-编写user-service-ts" class="sidebar-link reco-side-_4-6-编写user-service-ts" data-v-cb1513f6>4.6 编写user.service.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-7-编写user-module-ts" class="sidebar-link reco-side-_4-7-编写user-module-ts" data-v-cb1513f6>4.7 编写user.module.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-8-编写user-controller-ts" class="sidebar-link reco-side-_4-8-编写user-controller-ts" data-v-cb1513f6>4.8 编写user.controller.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-9-编写user-entity-ts" class="sidebar-link reco-side-_4-9-编写user-entity-ts" data-v-cb1513f6>4.9 编写user.entity.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-10-编写user-providers-ts" class="sidebar-link reco-side-_4-10-编写user-providers-ts" data-v-cb1513f6>4.10 编写user.providers.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-11-编写userdto-ts" class="sidebar-link reco-side-_4-11-编写userdto-ts" data-v-cb1513f6>4.11 编写userDto.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-12-编写config-constants" class="sidebar-link reco-side-_4-12-编写config-constants" data-v-cb1513f6>4.12 编写config/constants</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-13-编写config-index-ts" class="sidebar-link reco-side-_4-13-编写config-index-ts" data-v-cb1513f6>4.13 编写config/index.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-14-编写code-code-ts" class="sidebar-link reco-side-_4-14-编写code-code-ts" data-v-cb1513f6>4.14 编写code/code.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-15-编写auth-service-ts" class="sidebar-link reco-side-_4-15-编写auth-service-ts" data-v-cb1513f6>4.15 编写auth.service.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-16-编写auth-module-ts" class="sidebar-link reco-side-_4-16-编写auth-module-ts" data-v-cb1513f6>4.16 编写auth.module.ts</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_4-17-编写auth-controller-ts" class="sidebar-link reco-side-_4-17-编写auth-controller-ts" data-v-cb1513f6>4.17 编写auth.controller.ts</a></li><li class="level-2" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_5-测试" class="sidebar-link reco-side-_5-测试" data-v-cb1513f6>5. 测试</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_5-1-测试注册用户" class="sidebar-link reco-side-_5-1-测试注册用户" data-v-cb1513f6>5.1 测试注册用户</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_5-2-测试登录用户" class="sidebar-link reco-side-_5-2-测试登录用户" data-v-cb1513f6>5.2 测试登录用户</a></li><li class="level-3" data-v-cb1513f6><a href="/handbook/nest/03_nestJwtSwagger.html#_5-3-注册swagger" class="sidebar-link reco-side-_5-3-注册swagger" data-v-cb1513f6>5.3 注册swagger</a></li></ul></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/assets/js/app.cd554512.js" defer></script><script src="/assets/js/3.6b949e12.js" defer></script><script src="/assets/js/1.7c22585b.js" defer></script><script src="/assets/js/18.dd551d83.js" defer></script>
+  </body>
+</html>
